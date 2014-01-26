@@ -4,11 +4,11 @@ SRC = ./src
 BIN = ./bin
 INC = ./include
 
-all: i2c.o 
-	g++ $(CFLAGS) $(OBJ)/* $(SRC)/example.cpp -o $(BIN)/example.out
+acs: i2c.o
+	g++ $(CFLAGS) src/i2c.o $(SRC)/acs.cpp -o $(BIN)/acs
 
 i2c.o:
-	g++ $(CFLAGS) $(SRC)/i2c.cpp -c -o $(OBJ)/i2c.o
+	g++ $(CFLAGS) $(SRC)/i2c.cpp -c -o src/i2c.o
 
-clean:	
+clean:
 	rm $(OBJ)/* $(BIN)/* $(INC)/*~ $(SRC)/*~ *~
