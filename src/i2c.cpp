@@ -56,35 +56,35 @@ void myI2C::Send_I2C_Byte(unsigned char DEVICE_ADDR, unsigned char Reg_ADDR, uns
 
 unsigned char myI2C::Read_I2C_Byte(unsigned char DEVICE_ADDR,unsigned char Reg_ADDR){
 	I2C_WR_Buf[0] = Reg_ADDR;
-	
+
 	i2cSetAddress(DEVICE_ADDR);
 	if(write(g_i2cFile, I2C_WR_Buf, 1) != 1) {
 		perror("Write Error in myI2C::Read_I2C_Byte");
 	}
-	i2cSetAddress(DEVICE_ADDR);	
+	i2cSetAddress(DEVICE_ADDR);
 	if(read(g_i2cFile, I2C_RD_Buf, 1) !=1){
 		perror("Read Error myI2C::Read_I2C_Byte");
 	}
-	
+
 	return I2C_RD_Buf[0];
 }
 
 unsigned char myI2C::Read_Multi_Byte(unsigned char DEVICE_ADDR, unsigned char Reg_ADDR, size_t n){
 	I2C_WR_Buf[0] = Reg_ADDR;
-	
+
 	i2cSetAddress(DEVICE_ADDR);
 	ssize_t s = write(g_i2cFile, I2C_WR_Buf, 1);
 	if( s != 1) {
 		cout << "Wanted to write " << 1 << " byte, but instead wrote " << s << ". " <<endl;
 		perror("Write Error in myI2C::Read_Multi_Byte");
 	}
-	i2cSetAddress(DEVICE_ADDR);	
+	i2cSetAddress(DEVICE_ADDR);
 	ssize_t t = read(g_i2cFile, I2C_RD_Buf, n);
 	if( t != n)
 	{
 		cout << "Wanted to read " << n << " bytes, but instead got " << t << ". " <<endl;
 		perror("Read Error in myI2C::Read_Multi_Byte");
 	}
-		
+
 	return I2C_RD_Buf[0];
 }
