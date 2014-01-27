@@ -1,0 +1,9 @@
+hmc5883 : 0x1e
+adxl345 : 0x53
+itg-3200: 0x68
+
+
+echo hmc5883 0x1e > /sys/bus/i2c/devices/i2c-1/new_device (same as modprobe hmc5843)
+Read from: /sys/bus/i2c/devices/1-001e/iio:device0
+
+echo 0x1e > /sys/bus/i2c/devices/i2c-1/delete_device (same modprobe -r hmc5843)
