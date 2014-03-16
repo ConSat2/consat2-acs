@@ -16,10 +16,7 @@ const string LOGS_FOLDER("/home/logs/");
 FILE* g_fp_log = NULL;
 
 bool enable_sensor() {
-
-  //init log file
   g_fp_log = Shakespeare::open_log (LOGS_FOLDER, filename);
-
   printf("enabling sensor\n");
   int fd = open(PATH, O_NONBLOCK | O_WRONLY);
   int retval = write(fd,ADDRESS,strlen(ADDRESS));
@@ -39,16 +36,15 @@ int main()
   int i;
   printf("Starting job\n");
   enable_sensor();
+  char* Temp = (char*) malloc (sizeof(char)*16);
   Shakespeare::log(g_fp_log, Shakespeare::NOTICE, "Sensor", "Starting");
   while(true) {
     // TODO: read last 6 bytes only
     FILE* fp = fopen(w1,"r");
     if(fp != NULL) {
       size_t bytes_read = fread(buffer,1, 75, fp);
-      char* Temp;
       float temperature = atoi(buffer+69) / 1000.0;
       printf("temperature = %.3f degrees\n", temperature);
-
       if (g_fp_log != NULL) {
         sprintf(Temp,"%.2f",temperature);
         Shakespeare::log(g_fp_log, Shakespeare::NOTICE, filename, Temp);
