@@ -6,6 +6,8 @@
 #include <stdlib.h>
 #include "shakespeare.h"
 
+#define DEBUG_THERMISTOR 1
+
 #define filename "read-Thermistor"
 
 const char* ADDRESS= "BB-W1:00A0";
@@ -15,15 +17,15 @@ FILE* g_fp_log = NULL;
 
 bool enable_sensor() {
 
-  //init log
+  //init log file
   g_fp_log = Shakespeare::open_log (LOGS_FOLDER, filename);
 
   printf("enabling sensor\n");
   int fd = open(PATH, O_NONBLOCK | O_WRONLY);
   int retval = write(fd,ADDRESS,strlen(ADDRESS));
-  if (retval == -1)
+  if (retval == -1) {
     return false;
-
+  }
   close(fd);
   printf("thermistor enabled\n");
   return true;
@@ -37,7 +39,7 @@ int main()
   int i;
   printf("Starting job\n");
   enable_sensor();
-Shakespeare::log(g_fp_log, Shakespeare::NOTICE, "Sensor", "Starting");
+  Shakespeare::log(g_fp_log, Shakespeare::NOTICE, "Sensor", "Starting");
   while(true) {
     // TODO: read last 6 bytes only
     FILE* fp = fopen(w1,"r");
@@ -49,8 +51,10 @@ Shakespeare::log(g_fp_log, Shakespeare::NOTICE, "Sensor", "Starting");
 
       if (g_fp_log != NULL) {
         sprintf(Temp,"%.2f",temperature);
-//        printf("%s\n", Temp);
-//        Shakespeare::log(g_fp_log, Shakespeare::NOTICE, filename, Temp);
+        Shakespeare::log(g_fp_log, Shakespeare::NOTICE, filename, Temp);
+        if (DEBUG_THERMISTOR) {
+            printf("%s\n", Temp);
+        }
       }
       fclose(fp);
     }
