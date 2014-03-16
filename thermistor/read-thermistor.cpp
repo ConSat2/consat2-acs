@@ -55,6 +55,6 @@ int main()
       fclose(fp);
     }
   }
-
+  free(Temp);
   return 0;
 }
