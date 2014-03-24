@@ -5,9 +5,9 @@
 
 void payload_start_experiment(uint8_t experiment_number);
 void payload_end_experiment(uint8_t experiment_number);
-void payload_set_power(int value);
-float payload_read_load_cell(int exp_number);
-float payload_read_photodiode(int exp_number);
-float payload_read_temperature(int exp_number);
+void payload_set_power(uint8_t value);
+float payload_read_load_cell(uint8_t experiment_number);
+float payload_read_photodiode(uint8_t experiment_number);
+float payload_read_temperature(uint8_t experiment_number);
 
 #endif
