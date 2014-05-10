@@ -2,21 +2,22 @@
 #define __PAYLOAD_H__
 
 // TODO:
-// Verify pins
 // Benchmark payload response time
 // Check analog reads
 
-#define PAYLOAD_POWER "P9_11"
-#define REGULAR_EXPERIMENT "P9_12"
-#define HEALING_EXPERIMENT "P9_13"
-#define COMPARATOR "P9_14"
-#define EXP1_LOAD_CELL "P9_15"
-#define EXP1_PHOTODIODE "P9_16"
-#define EXP1_THERMISTOR "P9_17"
-#define EXP2_LOAD_CELL "P9_18"
-#define EXP2_PHOTODIODE "P9_19"
-#define EXP1_HEATER "P9_20"
-#define EXP2_HEATER "P9_21"
+#define PAYLOAD_POWER "P9_16" // GPIO_51
+#define REGULAR_EXPERIMENT "P9_13" // GPIO_31
+#define HEALING_EXPERIMENT "P9_11" // GPIO_30
+#define COMPARATOR "P9_15" // GPIO_48
+#define SH_LOAD_CELL "P9_37" // AIN2
+#define SH_PHOTODIODE "P9_33"  // AIN4
+#define SH_THERMISTOR "P8_7" // GPIO_66
+#define R_THERMISTOR "P8_9" // GPIO_69
+#define EXT_THERMISTOR "P8_11" // GPIO_45
+#define R_LOAD_CELL "P9_39" // AIN0
+#define R_PHOTODIODE "P9_35" // AIN6
+#define SH_HEATER "P9_41" // GPIO_20
+#define R_HEATER "P8_8" // GPIO_67
 
 // Initilizes payload experiments
 // Init specifically per experiment?

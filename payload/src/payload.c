@@ -8,15 +8,15 @@ void payload_init()
   // Enable all GPIO's and set direction
   bbb_enableGpio(bbb_getGpio(bbb_getIndexByStr(REGULAR_EXPERIMENT)));
   bbb_enableGpio(bbb_getGpio(bbb_getIndexByStr(HEALING_EXPERIMENT)));
-  bbb_enableGpio(bbb_getGpio(bbb_getIndexByStr(EXP1_HEATER)));
-  bbb_enableGpio(bbb_getGpio(bbb_getIndexByStr(EXP2_HEATER)));
+  bbb_enableGpio(bbb_getGpio(bbb_getIndexByStr(SH_HEATER)));
+  bbb_enableGpio(bbb_getGpio(bbb_getIndexByStr(R_HEATER)));
   bbb_enableGpio(bbb_getGpio(bbb_getIndexByStr(PAYLOAD_POWER)));
   bbb_enableGpio(bbb_getGpio(bbb_getIndexByStr(COMPARATOR)));
 
   bbb_setGpioDirection(bbb_getGpio(bbb_getIndexByStr(REGULAR_EXPERIMENT)), 1);
   bbb_setGpioDirection(bbb_getGpio(bbb_getIndexByStr(HEALING_EXPERIMENT)), 1);
-  bbb_setGpioDirection(bbb_getGpio(bbb_getIndexByStr(EXP1_HEATER)), 1);
-  bbb_setGpioDirection(bbb_getGpio(bbb_getIndexByStr(EXP2_HEATER)), 1);
+  bbb_setGpioDirection(bbb_getGpio(bbb_getIndexByStr(SH_HEATER)), 1);
+  bbb_setGpioDirection(bbb_getGpio(bbb_getIndexByStr(R_HEATER)), 1);
   bbb_setGpioDirection(bbb_getGpio(bbb_getIndexByStr(PAYLOAD_POWER)), 1);
   bbb_setGpioDirection(bbb_getGpio(bbb_getIndexByStr(COMPARATOR)), 0);
 
@@ -63,7 +63,7 @@ void payload_end_experiment(uint8_t experiment_number)
 
 // Sets power switch HIGH/LOW
 void payload_set_power(uint8_t value)
-{ 
+{
   switch(value)
   {
     case 0:
@@ -77,16 +77,16 @@ void payload_set_power(uint8_t value)
   }
 }
 
-// Set heaters switch HIGH/LOW 
+// Set heaters switch HIGH/LOW
 void payload_set_heaters(uint8_t experiment_number, uint8_t value)
 {
   switch(experiment_number)
   {
     case 0:
-      bbb_setGpioValue(bbb_getGpio(bbb_getIndexByStr(EXP1_HEATER)), value);
+      bbb_setGpioValue(bbb_getGpio(bbb_getIndexByStr(SH_HEATER)), value);
       break;
     case 1:
-      bbb_setGpioValue(bbb_getGpio(bbb_getIndexByStr(EXP2_HEATER)), value);
+      bbb_setGpioValue(bbb_getGpio(bbb_getIndexByStr(R_HEATER)), value);
       break;
     default:
       break;
