@@ -22,16 +22,16 @@ int main(){
   if(set_range(16)  == 0)
     return 1;
 
-  get_data_x(&x);
-  get_data_y(&y);
-  get_data_z(&z);
-
   if(VISUAL) {
     while(true) {
       initscr();        /* start the curses mode */
       start_color();
       init_pair(1, COLOR_RED, COLOR_BLACK);
       init_pair(2, COLOR_GREEN, COLOR_BLACK);
+
+      get_data_x(&x);
+      get_data_y(&y);
+      get_data_z(&z);
 
       clear();
 
@@ -87,11 +87,9 @@ int main(){
             else
                     attroff(COLOR_PAIR(2));
 
-  /*
                   mvprintw(3,0,"X: %1.3f",x);
                   mvprintw(4,0,"Y: %1.3f",y);
                   mvprintw(5,0,"Z: %1.3f",z);
-  */
       //Wait
       refresh();
       usleep (100000) ;
@@ -99,13 +97,17 @@ int main(){
   }
   else {
     while(true){
+      get_data_x(&x);
+      get_data_y(&y);
+      get_data_z(&z);
+
 
       printf("X: %1.3f ",x);
       printf("Y: %1.3f ",y);
       printf("Z: %1.3f\n",z);
 
       //Wait
-      usleep (100000) ;
+      usleep (500000) ;
     }
   }
 

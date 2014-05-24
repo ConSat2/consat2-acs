@@ -1,2 +1,2 @@
 all:
-	gcc visual.c adxl345.c -lncurses -o adxldemo
+	gcc accel.c adxl345.c -lncurses -o adxldemo
