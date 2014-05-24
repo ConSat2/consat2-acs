@@ -1,0 +1,15 @@
+# Warning flags
+WARNINGS= -wall -Wextra -fpermissive
+#C Compiler
+CCFLAGS = -c $(Warnings)
+CC=g++
+BBCC=arm-linux-gnueabi-g++
+
+SRCS    := srcs.c
+SRCS    := $(addprefix src/, $(SRCS))
+
+BBLIBS    := libshakespeare-BB.a
+BBLIBS    := $(addprefix lib/, $(BBLIBS))
+
+read-thermistor: $(LIBS)
+	$(BBCC) read-thermistor.cpp BBLIBS -lshakespeare-BB -o $@
